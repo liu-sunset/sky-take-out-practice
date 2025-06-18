@@ -88,4 +88,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> page = employeeMapper.selectEmpPageMapper();
         return new PageResult(page.getTotal(),page.getResult());
     }
+
+    //员工账号的启用和禁用
+    @Override
+    public void startOrStop(Integer status, long id) {
+       Employee employee=  Employee.builder()
+                .status(status)
+                .id(id)
+               .build();
+       employeeMapper.startOrStop(employee);
+    }
 }

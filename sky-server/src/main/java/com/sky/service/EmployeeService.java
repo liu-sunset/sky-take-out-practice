@@ -19,4 +19,6 @@ public interface EmployeeService {
     void save(EmployeeDTO employeeDTO);
     //分页查询
     PageResult selectEmpPageService(EmployeePageQueryDTO employeePageQueryDTO);
+    //员工账号的启用和禁用
+    void startOrStop(Integer status, long id);
 }

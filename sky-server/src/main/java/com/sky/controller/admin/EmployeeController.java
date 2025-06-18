@@ -87,4 +87,12 @@ public class EmployeeController {
         PageResult employeePageResultVO = employeeService.selectEmpPageService(employeePageQueryDTO);
         return Result.success(employeePageResultVO);
     }
+
+    //员工账号的启用和禁用
+    @PostMapping("/status/{status}")
+    public Result startOrStop(@PathVariable Integer status,long id){
+        log.info("员工账号的启用和禁用status,id：{},{}",status,id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
+    }
 }
