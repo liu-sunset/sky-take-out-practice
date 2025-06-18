@@ -95,4 +95,20 @@ public class EmployeeController {
         employeeService.startOrStop(status,id);
         return Result.success();
     }
+
+    //根据ID查询回显
+    @GetMapping("/{id}")
+    public Result<Employee> selectById(@PathVariable long id){
+        log.info("员工查询回显id:{}",id);
+        Employee employee = employeeService.selectById(id);
+        return Result.success(employee);
+    }
+
+    //修改员工
+    @PutMapping
+    public Result updateEmp(@RequestBody EmployeeDTO employeeDTO){
+        log.info("修改员工数据：{}",employeeDTO);
+        employeeService.updateEmp(employeeDTO);
+        return Result.success();
+    }
 }

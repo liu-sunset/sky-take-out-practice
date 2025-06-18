@@ -21,4 +21,8 @@ public interface EmployeeService {
     PageResult selectEmpPageService(EmployeePageQueryDTO employeePageQueryDTO);
     //员工账号的启用和禁用
     void startOrStop(Integer status, long id);
+    //员工的查询回显
+    Employee selectById(long id);
+    //修改员工数据
+    void updateEmp(EmployeeDTO employeeDTO);
 }

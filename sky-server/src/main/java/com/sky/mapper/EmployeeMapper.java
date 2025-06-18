@@ -24,4 +24,6 @@ public interface EmployeeMapper {
     Page<Employee> selectEmpPageMapper();
     //员工账号的启用和禁用
     void startOrStop(Employee employee);
+    //员工的查询回显
+    Employee selectById(long id);
 }
