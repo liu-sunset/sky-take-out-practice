@@ -6,3 +6,7 @@ sky:
     database: sky_take_out
     username: root
     password: liu6713122616.
+  alioss:
+    bucket-name: liu-sunset-sky-take-out
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    region: cn-beijing
