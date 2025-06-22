@@ -16,4 +16,12 @@
             #{id}
         </foreach>
     </delete>
+<!--    根据ID删除对应的口味-->
+    <delete id="deleteByIdMapper">
+        delete from dish_flavor where dish_id = #{id}
+    </delete>
+    <!--    根据ID查询菜品对应的口味信息-->
+    <select id="selectByIdMapper" resultType="com.sky.entity.DishFlavor">
+        select * from dish_flavor where dish_id = #{id}
+    </select>
 </mapper>
