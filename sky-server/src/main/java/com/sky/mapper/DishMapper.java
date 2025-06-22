@@ -5,8 +5,11 @@ import com.sky.annotation.AutoFill;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.enumeration.OperationType;
+import com.sky.vo.DishVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface DishMapper {
@@ -23,5 +26,9 @@ public interface DishMapper {
     //新增菜品
     public void addDish(Dish dish);
     //菜品的分页查询
-    public Page selectDishPageMapper(DishPageQueryDTO dishPageQueryDTO);
+    public Page<DishVO> selectDishPageMapper(DishPageQueryDTO dishPageQueryDTO);
+    //根据ID集合查询出所有没有启用的id集合
+    public List<Long> selectDishStatusMapper(List<Long> ids);
+    //批量删除菜品
+    public void deleteDishMapper(List<Long> ids);
 }

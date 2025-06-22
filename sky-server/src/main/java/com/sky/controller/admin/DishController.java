@@ -11,6 +11,8 @@ import org.apache.ibatis.io.ResolverUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/admin/dish")
@@ -32,5 +34,13 @@ public class DishController {
         log.info("菜品分页查询参数：{}",dishPageQueryDTO);
         PageResult pageResult = dishService.selectDishPageService(dishPageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    //菜品的批量删除
+    @DeleteMapping
+    public Result deleteDishController(@RequestParam List<Long> ids){
+        log.info("菜品批量删除的ID：{}",ids);
+        dishService.deleteDishService(ids);
+        return Result.success();
     }
 }
