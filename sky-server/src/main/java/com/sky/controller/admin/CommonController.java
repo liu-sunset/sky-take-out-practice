@@ -1,7 +1,7 @@
 package com.sky.controller.admin;
 
+import com.sky.constant.MessageConstant;
 import com.sky.result.Result;
-import com.sky.utils.OssUtil;
 import com.sky.utils.OssUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.UUID;
 
 @RequestMapping("/admin/common")
 @Slf4j
@@ -26,6 +23,8 @@ public class CommonController {
         String originalFilename = file.getOriginalFilename();
         assert originalFilename != null;
         String uploadPath = ossUtil.upload(file.getBytes(), originalFilename);
+        if(uploadPath!=null)
         return Result.success(uploadPath);
+        return Result.error(MessageConstant.UPLOAD_FAILED);
     }
 }
