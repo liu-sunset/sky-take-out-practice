@@ -12,6 +12,11 @@ spring:
       url: jdbc:mysql://localhost:3306/sky_take_out
       username: root
       password: liu6713122616.
+  redis:
+    host: ${sky.redis.host}
+    port: ${sky.redis.port}
+    password: ${sky.redis.password}
+    database: ${sky.redis.database}
   servlet:
     multipart:
       max-file-size: 10MB
