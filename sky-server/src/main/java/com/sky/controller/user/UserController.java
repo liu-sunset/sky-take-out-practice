@@ -8,6 +8,7 @@ import com.sky.result.Result;
 import com.sky.service.UserService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.UserLoginVO;
+import com.sun.tools.javac.comp.Todo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +43,7 @@ public class UserController {
                 .token(token)
                 .openid(user.getOpenid())
                 .build();
-
+        
         log.info("用户登录成功，信息：{}",userLoginVO);
         //组装uservo并返回
         return Result.success(userLoginVO);

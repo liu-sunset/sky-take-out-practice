@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.lang.model.util.ElementScanner6;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -108,5 +109,22 @@ public class DishServiceImpl implements DishService {
         if(dish.getFlavors()!=null&&!dish.getFlavors().isEmpty()){
             dishFlavorMapper.addDishFlavor(dish.getFlavors());
         }
+    }
+
+    @Override
+    public List<DishVO> listWithFlavor(Dish dish) {
+        List<Dish> dishList = dishMapper.list(dish);
+        List<DishVO> dishVOList = new ArrayList<>();
+        for (Dish d : dishList) {
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(d,dishVO);
+
+            //根据菜品id查询对应的口味
+            List<DishFlavor> flavors = dishFlavorMapper.selectByIdMapper(d.getId());
+            dishVO.setFlavors(flavors);
+            dishVOList.add(dishVO);
+        }
+
+        return dishVOList;
     }
 }

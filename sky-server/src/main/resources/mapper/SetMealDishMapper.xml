@@ -10,4 +10,9 @@
             #{id}
         </foreach>
     </select>
+
+<!--    根据套餐ID查询套餐中所有单品信息-->
+    <select id="selectSetmealDishByIdMapper" resultType="com.sky.entity.SetmealDish">
+        select * from setmeal_dish where setmeal_id = #{setmealId}
+    </select>
 </mapper>

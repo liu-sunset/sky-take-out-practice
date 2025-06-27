@@ -37,4 +37,6 @@ public interface DishMapper {
     //修改菜品的基本信息
     @AutoFill(OperationType.UPDATE)
     public void updateDishMapper(Dish dish);
+    //动态条件查询菜品
+    List<Dish> list(Dish dish);
 }

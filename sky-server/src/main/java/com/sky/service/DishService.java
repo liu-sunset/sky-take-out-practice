@@ -5,7 +5,6 @@ import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.result.PageResult;
 import com.sky.vo.DishVO;
-
 import java.util.List;
 
 public interface DishService {
@@ -19,4 +18,7 @@ public interface DishService {
     public DishVO selectByIdService(long id);
     //修改菜品信息
     public void updateDishService(DishDTO dishDTO);
+    //根据分类id查询菜品
+    List<DishVO> listWithFlavor(Dish dish);
+    //
 }

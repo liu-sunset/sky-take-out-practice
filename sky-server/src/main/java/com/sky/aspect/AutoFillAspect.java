@@ -1,6 +1,5 @@
 package com.sky.aspect;
 
-import com.alibaba.druid.sql.ast.statement.SQLIfStatement;
 import com.sky.annotation.AutoFill;
 import com.sky.constant.AutoFillConstant;
 import com.sky.context.BaseContext;
@@ -12,7 +11,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
@@ -51,8 +49,7 @@ public class AutoFillAspect {
             Method setUpdateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
             Method setCreateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class);
             Method setUpdateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
-            
-            
+
             //通过反射运行方法，实现完成赋值
             setCreateTime.invoke(entity,now);
             setUpdateTime.invoke(entity,now);
