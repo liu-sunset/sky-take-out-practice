@@ -47,10 +47,7 @@ public class SetMealController {
         return Result.success();
     }
 
-    /*
-    * TODO
-    *  接口测试
-    * */
+
     @PutMapping
     public Result modifySetmealController(@RequestBody SetmealDTO setmealDTO){
         log.info("根据ID修改套餐：{}",setmealDTO);
