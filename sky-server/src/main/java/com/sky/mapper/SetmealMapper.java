@@ -3,6 +3,7 @@ package com.sky.mapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.annotation.AutoFill;
+import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
@@ -35,4 +36,8 @@ public interface SetmealMapper {
 
     //批量删除套餐
     public void deleteSetmealMapper(List<Long> ids);
+
+    //根据ID修改套餐
+    @AutoFill(OperationType.UPDATE)
+    public void modifySetmealMapper(Setmeal setmeal);
 }

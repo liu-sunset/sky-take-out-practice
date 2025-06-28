@@ -14,4 +14,6 @@ public interface SetMealDishMapper {
     public List<SetmealDish> selectSetmealDishByIdMapper(long setmealId);
     //批量删除Setmeal_Dish表中信息
     public void deleteSetmealDishMapper(List<Long> ids);
+    //添加套餐中的餐品
+    public void addSetmealDishMapper(List<SetmealDish> setmealDishList);
 }

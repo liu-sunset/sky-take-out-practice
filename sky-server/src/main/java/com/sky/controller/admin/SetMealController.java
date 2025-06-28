@@ -46,4 +46,15 @@ public class SetMealController {
         setMealService.deleteSetmealService(ids);
         return Result.success();
     }
+
+    /*
+    * TODO
+    *  接口测试
+    * */
+    @PutMapping
+    public Result modifySetmealController(@RequestBody SetmealDTO setmealDTO){
+        log.info("根据ID修改套餐：{}",setmealDTO);
+        setMealService.modifySetmealService(setmealDTO);
+        return Result.success();
+    }
 }
