@@ -6,6 +6,8 @@ import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.result.PageResult;
 import com.sky.vo.SetmealVO;
 
+import java.util.List;
+
 public interface SetMealService {
     //新增套餐
     public void addSetMealService(SetmealDTO setmealDTO);
@@ -13,4 +15,6 @@ public interface SetMealService {
     public SetmealVO selectSetmealByIdService(long id);
     //套餐的分页查询
     public PageResult selectSetmealPageService(SetmealPageQueryDTO setmealPageQueryDTO);
+    //批量删除套餐
+    public void deleteSetmealService(List<Long> ids);
 }

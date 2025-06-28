@@ -8,6 +8,9 @@ import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.xmlbeans.impl.xb.xsdschema.LocalSimpleType;
+
+import java.util.List;
 
 @Mapper
 public interface SetmealMapper {
@@ -29,4 +32,7 @@ public interface SetmealMapper {
 
     //套餐的分页查询
     public Page<Setmeal> selectSetmealPageMapper(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    //批量删除套餐
+    public void deleteSetmealMapper(List<Long> ids);
 }

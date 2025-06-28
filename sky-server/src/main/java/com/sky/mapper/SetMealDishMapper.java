@@ -2,6 +2,7 @@ package com.sky.mapper;
 
 import com.sky.entity.SetmealDish;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.xmlbeans.impl.xb.xsdschema.LocalSimpleType;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface SetMealDishMapper {
     public List<Long> selectByDishIdMapper(List<Long> ids);
     //根据套餐ID查询套餐中所有单品信息
     public List<SetmealDish> selectSetmealDishByIdMapper(long setmealId);
+    //批量删除Setmeal_Dish表中信息
+    public void deleteSetmealDishMapper(List<Long> ids);
 }
