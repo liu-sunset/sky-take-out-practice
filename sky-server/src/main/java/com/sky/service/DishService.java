@@ -20,5 +20,6 @@ public interface DishService {
     public void updateDishService(DishDTO dishDTO);
     //根据分类id查询菜品
     List<DishVO> listWithFlavor(Dish dish);
-    //
+    //根据套餐ID查询旗下的餐品
+    public List<Dish> selectDishByCategoryIdService(long categoryId);
 }

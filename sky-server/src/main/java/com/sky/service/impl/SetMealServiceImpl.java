@@ -1,10 +1,14 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.dto.SetmealDTO;
+import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
 import com.sky.mapper.SetMealDishMapper;
 import com.sky.mapper.SetmealMapper;
+import com.sky.result.PageResult;
 import com.sky.service.SetMealService;
 import com.sky.vo.SetmealVO;
 import org.springframework.beans.BeanUtils;
@@ -41,5 +45,13 @@ public class SetMealServiceImpl implements SetMealService {
         BeanUtils.copyProperties(setmeal,setmealVO);
         setmealVO.setSetmealDishes(setmealDishes);
         return setmealVO;
+    }
+
+    //套餐的分页查询
+    @Override
+    public PageResult selectSetmealPageService(SetmealPageQueryDTO setmealPageQueryDTO) {
+        PageHelper.startPage(setmealPageQueryDTO.getPage(),setmealPageQueryDTO.getPageSize());
+        Page<Setmeal> page = setmealMapper.selectSetmealPageMapper(setmealPageQueryDTO);
+        return new PageResult(page.getTotal(),page.getResult());
     }
 }

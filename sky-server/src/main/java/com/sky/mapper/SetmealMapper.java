@@ -1,6 +1,9 @@
 package com.sky.mapper;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.annotation.AutoFill;
+import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +26,7 @@ public interface SetmealMapper {
 
     //根据ID查询套餐基本信息
     public Setmeal selectSetmealByIdMapper(long id);
+
+    //套餐的分页查询
+    public Page<Setmeal> selectSetmealPageMapper(SetmealPageQueryDTO setmealPageQueryDTO);
 }

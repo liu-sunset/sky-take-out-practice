@@ -68,4 +68,8 @@
         </where>
         order by create_time desc
     </select>
+<!--    根据套餐ID查询旗下对应的餐品-->
+    <select id="selectDishByCategoryIdMapper" resultType="com.sky.entity.Dish">
+        select * from dish where category_id = #{categoryId}
+    </select>
 </mapper>

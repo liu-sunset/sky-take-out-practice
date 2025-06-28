@@ -39,4 +39,6 @@ public interface DishMapper {
     public void updateDishMapper(Dish dish);
     //动态条件查询菜品
     List<Dish> list(Dish dish);
+    //根据套餐ID查询旗下对应的餐品
+    public List<Dish> selectDishByCategoryIdMapper(long categoryId);
 }

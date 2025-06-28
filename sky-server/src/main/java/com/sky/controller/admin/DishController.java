@@ -60,4 +60,11 @@ public class DishController {
         dishService.updateDishService(dishDTO);
         return Result.success();
     }
+
+    @GetMapping("/list")
+    public Result selectDishByCategoryIdController(long categoryId){
+        log.info("根据套餐ID查询旗下的餐品，套餐ID是：{}",categoryId);
+        List<Dish> dishList = dishService.selectDishByCategoryIdService(categoryId);
+        return Result.success(dishList);
+    }
 }

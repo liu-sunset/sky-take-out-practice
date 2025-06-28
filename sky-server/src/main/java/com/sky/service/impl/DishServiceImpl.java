@@ -127,4 +127,10 @@ public class DishServiceImpl implements DishService {
 
         return dishVOList;
     }
+
+    //根据套餐ID查询旗下对应的餐品
+    @Override
+    public List<Dish> selectDishByCategoryIdService(long categoryId) {
+        return dishMapper.selectDishByCategoryIdMapper(categoryId);
+    }
 }
