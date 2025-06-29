@@ -44,22 +44,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             //如果添加购物车的是套餐
             if(shoppingCart.getSetmealId()!=null){
                 Setmeal setmeal = setmealMapper.selectSetmealByIdMapper(shoppingCartDTO.getSetmealId());
-                shoppingCart.builder()
-                        .name(setmeal.getName())
-                        .image(setmeal.getImage())
-                        .number(1)
-                        .amount(setmeal.getPrice())
-                        .createTime(LocalDateTime.now())
-                        .build();
+                shoppingCart.setName(setmeal.getName());
+                shoppingCart.setImage(setmeal.getName());
+                shoppingCart.setNumber(1);
+                shoppingCart.setAmount(setmeal.getPrice());
+                shoppingCart.setCreateTime(LocalDateTime.now());
             }else {
                 DishVO dish = dishMapper.selectByIdMapper(shoppingCartDTO.getDishId());
-                shoppingCart.builder()
-                        .name(dish.getName())
-                        .image(dish.getImage())
-                        .number(1)
-                        .amount(dish.getPrice())
-                        .createTime(LocalDateTime.now())
-                        .build();
+                shoppingCart.setName(dish.getName());
+                shoppingCart.setImage(dish.getName());
+                shoppingCart.setNumber(1);
+                shoppingCart.setAmount(dish.getPrice());
+                shoppingCart.setCreateTime(LocalDateTime.now());
             }
             shoppingCartMapper.addShoppingCartMapper(shoppingCart);
         }else{
