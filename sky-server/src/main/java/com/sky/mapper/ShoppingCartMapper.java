@@ -14,4 +14,6 @@ public interface ShoppingCartMapper {
     public void addShoppingCartMapper(ShoppingCart shoppingCart);
     //修改购物车中物品信息
     public void modifyShoppingCartMapper(ShoppingCart shoppingCart);
+    //清空购物车
+    public void deleteShoppingCartMapper(long userId);
 }

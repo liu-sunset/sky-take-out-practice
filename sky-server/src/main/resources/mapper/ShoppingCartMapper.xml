@@ -17,6 +17,10 @@
             <if test="dishFlavor!=null and dishFlavor!=''"> and dish_flavor = #{dishFlavor}</if>
         </where>
     </update>
+<!--    清空购物车-->
+    <delete id="deleteShoppingCartMapper">
+        delete from shopping_cart where user_id = #{userId}
+    </delete>
 
     <select id="selectShoppingCartByShoppingCartDTO" resultType="com.sky.entity.ShoppingCart">
         select * from shopping_cart
