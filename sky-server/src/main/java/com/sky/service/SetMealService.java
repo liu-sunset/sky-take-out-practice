@@ -22,7 +22,9 @@ public interface SetMealService {
     //根据ID修改套餐
     public void modifySetmealService(SetmealDTO setmealDTO);
 //     条件查询
-    List<Setmeal> list(Setmeal setmeal);
+    public List<Setmeal> list(Setmeal setmeal);
 //    根据id查询菜品选项
-    List<DishItemVO> getDishItemById(Long id);
+    public List<DishItemVO> getDishItemById(Long id);
+    //修改套餐的状态
+    public void modifySetmealStatusService(Integer status,long id);
 }

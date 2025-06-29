@@ -97,4 +97,14 @@ public class SetMealServiceImpl implements SetMealService {
     public List<DishItemVO> getDishItemById(Long id) {
         return setmealMapper.getDishItemBySetmealId(id);
     }
+
+    //修改套餐的状态
+    @Override
+    public void modifySetmealStatusService(Integer status, long id) {
+        Setmeal setmeal = new Setmeal().builder()
+                .status(status)
+                .id(id)
+                .build();
+        setmealMapper.modifySetmealMapper(setmeal);
+    }
 }

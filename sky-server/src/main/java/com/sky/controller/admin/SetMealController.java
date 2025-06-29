@@ -60,7 +60,10 @@ public class SetMealController {
         return Result.success();
     }
 
-    /*
-    * TODO：套餐的起售和停售
-    * */
+    @PostMapping("/status/{status}")
+    public Result modifySetmealStatusController(@PathVariable Integer status,long id){
+        log.info("修改ID是{}的套餐的状态为:{}",id,status==1 ? "启售" : "停售");
+        setMealService.modifySetmealStatusService(status,id);
+        return Result.success();
+    }
 }
