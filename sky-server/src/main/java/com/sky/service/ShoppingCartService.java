@@ -1,2 +1,8 @@
-package com.sky.service;public interface ShoppingCartMapper {
+package com.sky.service;
+
+import com.sky.dto.ShoppingCartDTO;
+
+public interface ShoppingCartService {
+    //添加购物车
+    public void addShoppingCartService(ShoppingCartDTO shoppingCartDTO);
 }
