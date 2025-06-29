@@ -22,4 +22,6 @@ public interface DishService {
     List<DishVO> listWithFlavor(Dish dish);
     //根据套餐ID查询旗下的餐品
     public List<Dish> selectDishByCategoryIdService(long categoryId);
+    //修改菜品的售卖状态
+    public void modifyDishStatusService(Integer status,long id);
 }

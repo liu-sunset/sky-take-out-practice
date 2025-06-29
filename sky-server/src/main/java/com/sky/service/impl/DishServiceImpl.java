@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
+import com.sky.context.BaseContext;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.lang.model.util.ElementScanner6;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,5 +134,15 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<Dish> selectDishByCategoryIdService(long categoryId) {
         return dishMapper.selectDishByCategoryIdMapper(categoryId);
+    }
+
+    //修改菜品的售卖状态
+    @Override
+    public void modifyDishStatusService(Integer status, long id) {
+        Dish dish = Dish.builder()
+                .status(status)
+                .id(id)
+                .build();
+        dishMapper.updateDishMapper(dish);
     }
 }
