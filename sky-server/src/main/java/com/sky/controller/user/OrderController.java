@@ -21,7 +21,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    //TODO:待测试
     @PostMapping("/submit")
     public Result orderShoppingCartController(@RequestBody OrdersSubmitDTO ordersSubmitDTO){
         log.info("用户提交订单：{}",ordersSubmitDTO);
