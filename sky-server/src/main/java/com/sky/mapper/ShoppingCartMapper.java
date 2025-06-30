@@ -15,5 +15,7 @@ public interface ShoppingCartMapper {
     //修改购物车中物品信息
     public void modifyShoppingCartMapper(ShoppingCart shoppingCart);
     //清空购物车
-    public void deleteShoppingCartMapper(long userId);
+    public void vacantShoppingCartMapper(long userId);
+    //删除购物车中某一个套餐或者菜品
+    public void deleteShoppingCartSetmealOrDish(ShoppingCart shoppingCart);
 }

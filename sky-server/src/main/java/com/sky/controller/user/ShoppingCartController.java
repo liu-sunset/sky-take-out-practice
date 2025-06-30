@@ -6,10 +6,7 @@ import com.sky.result.Result;
 import com.sky.service.ShoppingCartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,21 +25,24 @@ public class ShoppingCartController {
         return Result.success();
     }
 
-    //TODO：减少购物车中物品的数量
+    @PostMapping("/sub")
+    public Result deleteShoppingCartController(@RequestBody ShoppingCartDTO shoppingCartDTO){
+        log.info("减少购物车物品数量:{}",shoppingCartDTO);
+        shoppingCartService.deleteShoppingCartService(shoppingCartDTO);
+        return Result.success();
+    }
 
-
-    //TODO:查看购物车内容功能测试
+    @GetMapping("/list")
     public Result<List<ShoppingCart>> selectShoppingCartController(){
         log.info("查看购物车");
-        shoppingCartService.selectShoppingCartService();
-        return Result.success();
+        List<ShoppingCart> shoppingCartList = shoppingCartService.selectShoppingCartService();
+        return Result.success(shoppingCartList);
     }
 
-    //TODO:清空购物车功能测试
-    public Result deleteShoppingCartController(){
+    @DeleteMapping("/clean")
+    public Result vacantShoppingCartController(){
         log.info("清空购物车");
-        shoppingCartService.deleteShoppingCartService();
+        shoppingCartService.vacantShoppingCartService();
         return Result.success();
     }
-
 }
