@@ -2,6 +2,7 @@ package com.sky.mapper;
 
 import com.sky.entity.OrderDetail;
 import com.sky.entity.Orders;
+import com.sky.service.OrderService;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDateTime;
@@ -17,4 +18,6 @@ public interface OrderMapper {
     public void modifyOrderMapper(Orders orders);
     //根据订单号查询订单
     Orders getByNumber(String orderNumber);
+    //根据订单ID查询订单
+    public Orders selectOrderByIdMapper(long id);
 }

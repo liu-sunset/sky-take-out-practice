@@ -46,4 +46,8 @@
     <select id="getByNumber" resultType="com.sky.entity.Orders">
         select * from orders where number = #{orderNumber}
     </select>
+<!--    根据订单ID（主键）查询订单-->
+    <select id="selectOrderByIdMapper" resultType="com.sky.entity.Orders">
+        select * from orders where id = #{id}
+    </select>
 </mapper>

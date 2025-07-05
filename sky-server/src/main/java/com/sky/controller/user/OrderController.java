@@ -1,5 +1,6 @@
 package com.sky.controller.user;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sky.dto.OrdersDTO;
 import com.sky.dto.OrdersSubmitDTO;
 import com.sky.result.Result;
@@ -8,10 +9,7 @@ import com.sky.vo.OrderSubmitVO;
 import com.sky.vo.OrderVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController("userOrderController")
 @Slf4j
@@ -26,5 +24,12 @@ public class OrderController {
         log.info("用户提交订单：{}",ordersSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.addOrderShoppingCartService(ordersSubmitDTO);
         return Result.success(orderSubmitVO);
+    }
+
+    @GetMapping("/reminder/{id}")
+    public Result remindOrderController(@PathVariable long id){
+        log.info("用户催单，订单ID:{}",id);
+        orderService.remindOrderService(id);
+        return Result.success();
     }
 }

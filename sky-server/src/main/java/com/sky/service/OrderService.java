@@ -10,4 +10,6 @@ public interface OrderService {
     public OrderSubmitVO addOrderShoppingCartService(OrdersSubmitDTO ordersSubmitDTO);
     //支付成功，修改订单状态
     void paySuccess(String outTradeNo);
+    //处理用户催单
+    public void remindOrderService(long id);
 }
