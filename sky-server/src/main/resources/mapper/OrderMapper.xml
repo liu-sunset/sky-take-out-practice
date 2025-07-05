@@ -42,4 +42,8 @@
     <select id="selectByStatusAndTimeMapper" resultType="com.sky.entity.Orders">
         select * from orders where status = #{status} and order_time &lt; #{orderTime}
     </select>
+    <!--    根据订单号查询订单-->
+    <select id="getByNumber" resultType="com.sky.entity.Orders">
+        select * from orders where number = #{orderNumber}
+    </select>
 </mapper>

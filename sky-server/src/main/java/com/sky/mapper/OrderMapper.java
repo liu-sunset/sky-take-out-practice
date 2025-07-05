@@ -15,4 +15,6 @@ public interface OrderMapper {
     public List<Orders> selectByStatusAndTimeMapper(Integer status, LocalDateTime orderTime);
     //修改订单信息
     public void modifyOrderMapper(Orders orders);
+    //根据订单号查询订单
+    Orders getByNumber(String orderNumber);
 }
