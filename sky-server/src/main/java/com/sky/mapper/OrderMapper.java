@@ -17,7 +17,9 @@ public interface OrderMapper {
     //修改订单信息
     public void modifyOrderMapper(Orders orders);
     //根据订单号查询订单
-    Orders getByNumber(String orderNumber);
+    public Orders getByNumber(String orderNumber);
     //根据订单ID查询订单
     public Orders selectOrderByIdMapper(long id);
+    //统计营业额
+    public Double turnoverStatMapper(Integer status, LocalDateTime begin,LocalDateTime end);
 }
