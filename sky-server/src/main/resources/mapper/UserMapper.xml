@@ -11,4 +11,12 @@
     <select id="selectByOpenId" resultType="com.sky.entity.User">
         select * from user where openid = #{openid}
     </select>
+<!--    查询指定时间段内所有用户数量-->
+    <select id="userAllStatMapper" resultType="java.lang.Long">
+        select count(*) from user where create_time &lt;= #{end}
+    </select>
+<!--    查询指定时间段内新增加的用户的数量-->
+    <select id="userNewAddStatMapper" resultType="java.lang.Long">
+        select count(*) from user where create_time between #{begin} and #{end}
+    </select>
 </mapper>
