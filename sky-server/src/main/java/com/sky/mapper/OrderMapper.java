@@ -5,6 +5,7 @@ import com.sky.entity.Orders;
 import com.sky.service.OrderService;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface OrderMapper {
     public Orders selectOrderByIdMapper(long id);
     //统计营业额
     public Double turnoverStatMapper(Integer status, LocalDateTime begin,LocalDateTime end);
+    //统计某个时间段内所有的订单的数量
+    public Integer allOrderStatMapper(LocalDateTime begin,LocalDateTime end);
+    //统计某个时间段内有效的订单的数量
+    public Integer allValidStatMapper(Integer status,LocalDateTime begin,LocalDateTime end);
 }

@@ -59,4 +59,12 @@
             <if test="end!=null">and order_time &lt;= #{end}</if>
         </where>
     </select>
+<!--    统计某个时间段内所有订单的数量-->
+    <select id="allOrderStatMapper" resultType="java.lang.Integer">
+        select count(*) from orders where order_time between #{begin} and #{end}
+    </select>
+<!--    统计某个时间段内有效的订单的数量-->
+    <select id="allValidStatMapper" resultType="java.lang.Integer">
+        select count(*) from orders where status = #{status} and order_time between #{begin} and #{end}
+    </select>
 </mapper>

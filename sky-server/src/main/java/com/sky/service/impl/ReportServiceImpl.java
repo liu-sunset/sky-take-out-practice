@@ -4,9 +4,11 @@ import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
+import com.sky.vo.OrderReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import org.apache.commons.lang.StringUtils;
+import org.openxmlformats.schemas.presentationml.x2006.main.CTCustomerDataList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,6 +78,55 @@ public class ReportServiceImpl implements ReportService {
                 .dateList(dateList)
                 .newUserList(newUserList)
                 .totalUserList(totalUserList)
+                .build();
+    }
+
+    @Override
+    public OrderReportVO orderStatService(LocalDate begin, LocalDate end) {
+        List<LocalDate> stringDateList = new ArrayList<>();
+        List<Integer> stringOrderCountList = new ArrayList<>();
+        List<Integer> stringValidOrderCountList = new ArrayList<>();
+        double orderCompletionRate = 0.0;
+        int totalOrderCount = 0;
+        int validOrderCount = 0;
+        stringDateList.add(begin);
+        while (begin.equals(end)){
+            begin.plusDays(1);
+            stringDateList.add(begin);
+        }
+        for(LocalDate localDate : stringDateList){
+            LocalDateTime beginDateTime = LocalDateTime.of(localDate, LocalDateTime.MIN.toLocalTime());
+            LocalDateTime endDateTime = LocalDateTime.of(localDate,LocalDateTime.MAX.toLocalTime());
+            Integer allOrder = orderMapper.allOrderStatMapper(beginDateTime,endDateTime);
+            Integer allValidOrder = orderMapper.allValidStatMapper(Orders.COMPLETED,beginDateTime,endDateTime);
+            allOrder = allOrder == null ? 0 : allOrder;
+            allValidOrder = allValidOrder == null ? 0 : allValidOrder;
+            stringOrderCountList.add(allOrder);
+            stringValidOrderCountList.add(allValidOrder);
+        }
+        //计算时间段内单量总和
+        for(Integer l : stringOrderCountList){
+            totalOrderCount += l;
+        }
+        //计算时间段内有效单量总和
+        for(Integer l : stringValidOrderCountList){
+            validOrderCount += l;
+        }
+        //计算有效单率
+        if(totalOrderCount!=0){
+            orderCompletionRate = (validOrderCount*1.0)/(totalOrderCount*1.0);
+        }
+        //封装VO返回结果
+        String dateList = StringUtils.join(stringDateList,",");
+        String orderCountList = StringUtils.join(stringOrderCountList,",");
+        String validOrderCountList = StringUtils.join(stringValidOrderCountList,",");
+        return OrderReportVO.builder()
+                .dateList(dateList)
+                .orderCountList(orderCountList)
+                .validOrderCountList(validOrderCountList)
+                .totalOrderCount(totalOrderCount)
+                .validOrderCount(validOrderCount)
+                .orderCompletionRate(orderCompletionRate)
                 .build();
     }
 }
