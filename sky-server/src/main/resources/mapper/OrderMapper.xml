@@ -67,4 +67,8 @@
     <select id="allValidStatMapper" resultType="java.lang.Integer">
         select count(*) from orders where status = #{status} and order_time between #{begin} and #{end}
     </select>
+<!--    统计销量前十-->
+    <select id="top10StatMapper" resultType="java.util.Map">
+        select od.name,sum(od.number) from orders o,order_detail od where o.id = od.order_id group by od.name order by sum(od.number) desc limit 0,10
+    </select>
 </mapper>

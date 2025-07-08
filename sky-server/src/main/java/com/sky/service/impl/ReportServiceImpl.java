@@ -5,17 +5,17 @@ import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
 import com.sky.vo.OrderReportVO;
+import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import org.apache.commons.lang.StringUtils;
-import org.openxmlformats.schemas.presentationml.x2006.main.CTCustomerDataList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalTime;
+import java.util.*;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -127,6 +127,30 @@ public class ReportServiceImpl implements ReportService {
                 .totalOrderCount(totalOrderCount)
                 .validOrderCount(validOrderCount)
                 .orderCompletionRate(orderCompletionRate)
+                .build();
+    }
+
+    //销量前十统计
+    @Override
+    public SalesTop10ReportVO top10StatService(LocalDate begin, LocalDate end) {
+        List<String> stringNameList = new ArrayList<>();
+        List<Integer> stringNumberList = new ArrayList<>();
+        LocalDateTime beginDateTime = LocalDateTime.of(begin, LocalTime.MIN);
+        LocalDateTime endDateTime = LocalDateTime.of(end, LocalTime.MAX);
+        Map<String, Integer> stringIntegerMap = orderMapper.top10StatMapper(beginDateTime, endDateTime);
+        if(stringIntegerMap==null){
+           return new SalesTop10ReportVO("","0");
+        }
+        Set<String> strings = stringIntegerMap.keySet();
+        for(String s : strings){
+            stringNameList.add(s);
+        }
+        stringNumberList = new ArrayList<>(stringIntegerMap.values());
+        String nameList = StringUtils.join(stringNameList, ",");
+        String numberList = StringUtils.join(stringNumberList, ",");
+        return SalesTop10ReportVO.builder()
+                .nameList(nameList)
+                .numberList(numberList)
                 .build();
     }
 }

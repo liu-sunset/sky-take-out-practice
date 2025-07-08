@@ -3,11 +3,13 @@ package com.sky.mapper;
 import com.sky.entity.OrderDetail;
 import com.sky.entity.Orders;
 import com.sky.service.OrderService;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -27,4 +29,7 @@ public interface OrderMapper {
     public Integer allOrderStatMapper(LocalDateTime begin,LocalDateTime end);
     //统计某个时间段内有效的订单的数量
     public Integer allValidStatMapper(Integer status,LocalDateTime begin,LocalDateTime end);
+    //统计销量前十
+    @MapKey("name")
+    public Map<String,Integer> top10StatMapper(LocalDateTime begin,LocalDateTime end);
 }
