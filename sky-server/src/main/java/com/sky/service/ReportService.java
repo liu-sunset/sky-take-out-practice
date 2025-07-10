@@ -5,6 +5,8 @@ import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public interface ReportService {
@@ -16,4 +18,6 @@ public interface ReportService {
     public OrderReportVO orderStatService(LocalDate begin,LocalDate end);
     //销量前十统计
     public SalesTop10ReportVO top10StatService(LocalDate begin,LocalDate end);
+    //导出30天的运营数据
+    public void exportDateService(HttpServletResponse response) throws IOException;
 }

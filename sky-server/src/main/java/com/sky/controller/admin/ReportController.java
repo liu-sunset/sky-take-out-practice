@@ -13,6 +13,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.LocalDate;
 
 
@@ -49,5 +52,11 @@ public class ReportController {
         log.info("销量统计，开始时间：{},结束时间:{}",begin,end);
         SalesTop10ReportVO salesTop10ReportVO = reportService.top10StatService(begin, end);
         return Result.success(salesTop10ReportVO);
+    }
+
+    @GetMapping("/export")
+    public void exportDateController(HttpServletResponse response) throws IOException {
+        log.info("导出30天的运营数据");
+        reportService.exportDateService(response);
     }
 }
